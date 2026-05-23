@@ -1,0 +1,36 @@
+# Go 编译输出
+/bin/
+/dist/
+/output/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Go 依赖
+/vendor/
+/go/pkg/
+
+# 编辑器
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# 日志、缓存、大文件
+*.log
+*.tmp
+*.zip
+*.tar.gz
+*.rar
+*.pdf
+*.mp4
+*.jpg
+*.png
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+default.etcd/

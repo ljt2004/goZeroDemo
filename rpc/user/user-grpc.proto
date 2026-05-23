@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+package user;
+option go_package = "./user-grpc";
+
+
+// 获取
+message GetUserRequest {
+    int64 id = 1;
+}
+
+message GetUserResponse {
+    int64 id = 1;
+    string name = 2;
+    string phone = 3;
+}
+// 登录
+message LoginRequest {
+    string Phone = 1;
+    string password = 2;
+}
+
+message LoginResponse {
+    string token = 1;
+}
+//注册
+message RegisterRequest {
+    string username = 1;
+    string password = 2;
+    string phone = 3;
+}
+
+message RegisterResponse {
+    int64 id = 1;
+    string username = 2;
+    string status = 3;
+}
+//更改信息
+message UpdateUserRequest {
+    int64 id = 1;
+    string name = 2;
+}
+
+message UpdateUserResponse {
+    bool success = 1;
+}
+// 获取我的详情
+message GetMyDetailRequest {
+    int64 userId = 1;
+}
+
+message GetMyDetailResponse {
+    string name = 1;
+    string phone = 2;
+    string email = 3;
+}
+
+
+service User {
+  rpc GetUser(GetUserRequest) returns (GetUserResponse);
+  rpc Login(LoginRequest) returns (LoginResponse);
+  rpc Register(RegisterRequest) returns (RegisterResponse);
+  rpc UpdateUser(UpdateUserRequest) returns (UpdateUserResponse);
+  rpc GetMyDetail(GetMyDetailRequest) returns (GetMyDetailResponse);
+
+}

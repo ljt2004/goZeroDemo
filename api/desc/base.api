@@ -1,0 +1,14 @@
+// 全局统一返回格式
+// 所有接口都用这个包裹数据
+type BaseResponse {
+    Code    int         `json:"code"`    // 状态码：0=成功，其他失败
+    Message string      `json:"message"` // 提示信息
+    Data    interface{} `json:"data"`    // 真正的数据（任意类型）
+}
+
+@server(
+	group: base
+)
+service goZeroApi {
+   
+}

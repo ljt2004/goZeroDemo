@@ -1,0 +1,46 @@
+syntax = "v1"
+
+
+info(
+	title: "文章文档"
+	desc:  "文章接口"
+	author: ""
+	email: ""
+	version: "1.0"
+	schemes: "http"
+)
+
+type (
+	ArticleReq {
+		Id int  `json:"id"`
+	}
+
+	ArticleInfo{
+		Id int  `json:"id"`
+		Title string `json:"title"`
+        Comtext string  `json:"comtext"`
+	}
+
+	ArticlerResp {
+		BaseResponse
+		Data  ArticleInfo `json:"data"`
+	}
+)
+
+
+@server (
+	group: article
+    prefix: /api/article   // 路由前缀
+	tags:   "文章管理"
+)
+
+service goZeroApi {
+     @doc(
+        summary: "获取文章详情"        // 接口标题
+    )
+	
+	@handler ArticleDetail
+	get /article/:id (ArticleReq) returns (ArticlerResp)
+
+}
+

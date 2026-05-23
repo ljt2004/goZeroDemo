@@ -1,0 +1,41 @@
+Name: user.rpc
+ListenOn: 0.0.0.0:8080
+Etcd:
+  Hosts:
+  - 127.0.0.1:2379
+  Key: user.rpc
+
+# 数据库配置信息
+MySQLConf:
+  Enable: true
+  User: root
+  Password: 
+  Host: 127.0.0.1
+  Port: 3306
+  Database: zero
+  CharSet: utf8
+  ParseTime: true
+  TimeZone: Local
+  AutoMigrate: true
+  Gorm:
+    TablePrefix: zero_
+    SingularTable: true
+    MaxOpenConns: 100
+    MaxIdleConns: 5
+    ConnMaxLifetime: 600
+
+# 认证配置信息
+JwtAuth:
+  AccessSecret: "K9sFd2$gH7jP0zR&mB5nA8qW1eU6tY"
+  AccessExpire: 86400 # 秒，24h
+
+
+# 在上层直接加，和 Name、Port 同级
+Log:
+  ServiceName: user-rpc
+  Mode: file        # 日志模式：file=文件保存
+  Path: ./logs      # 日志存放目录（会自动创建）
+  Level: info       # 日志级别
+  KeepDays: 7       # 只保留7天，自动清理
+  Compress: false   # 是否压缩
+  StackSkip: 0

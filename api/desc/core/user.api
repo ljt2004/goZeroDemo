@@ -1,0 +1,59 @@
+syntax = "v1"
+
+info(
+	title: "用户文档"
+	desc:  "用户接口"
+	author: ""
+	email: ""
+	version: "1.0"
+	schemes: "http"
+)
+
+
+
+type (
+	RegisterReq {
+		Username string `json:"username"`
+		Password string `json:"password"`
+		Phone    string `json:"phone"`
+	}
+	LoginReq {
+		Phone    string `json:"phone"`
+		Password string `json:"password"`
+	}
+	GetMyDetailReq  {}
+)
+
+@server (
+	group:  user
+	prefix: /api/user // 路由前缀
+	tags:   "用户管理"
+)
+
+service goZeroApi {
+	@doc (
+		summary: "用户注册"
+	)
+	@handler Register
+	post /register (RegisterReq) returns (BaseResponse)
+
+	@doc (
+		summary: "用户登录"
+	)
+	@handler Login
+	post /login (LoginReq) returns (BaseResponse)
+}
+
+@server (
+	jwt:        Auth
+	group:      user
+	prefix:     /api/user // 路由前缀
+)
+service goZeroApi {
+	@doc (
+		summary: "获取个人信息"
+	)
+	@handler GetMyDetail
+	post /my/detail (GetMyDetailReq) returns (BaseResponse)
+}
+
