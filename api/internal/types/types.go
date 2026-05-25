@@ -24,6 +24,14 @@ type BaseResponse struct {
 	Data    interface{} `json:"data"`    // 真正的数据（任意类型）
 }
 
+type GenerateCaptchaReq struct {
+}
+
+type GenerateCaptchaResp struct {
+	Id    string `json:"id"`    // 验证码ID
+	Image string `json:"image"` // base64图片
+}
+
 type GetMyDetailReq struct {
 }
 
@@ -36,4 +44,9 @@ type RegisterReq struct {
 	Username string `json:"username"`
 	Password string `json:"password"`
 	Phone    string `json:"phone"`
+}
+
+type VerifyCaptchaReq struct {
+	Id   string `json:"id"`
+	Code string `json:"code"`
 }

@@ -21,3 +21,19 @@ Log:
 Auth:
   AccessSecret: "K9sFd2$gH7jP0zR&mB5nA8qW1eU6tY" # 访问密钥
   AccessExpire: 86400 # 访问过期时间
+
+
+# Redis 配置
+Redis:
+  Host: 127.0.0.1:6379
+  Type: node
+  Pass: ""       # 没有密码留空
+
+# 验证码配置
+Captcha:
+  Expire: 600  # 10分钟
+  Width : 240  # 宽度
+  Height: 80   # 高度
+  Length: 4    # 长度
+  MaxSkew: 0.7  # 最大倾斜角度
+

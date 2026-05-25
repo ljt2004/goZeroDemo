@@ -7,6 +7,7 @@ import (
 	"net/http"
 
 	article "goZeroApi/internal/handler/article"
+	tools "goZeroApi/internal/handler/tools"
 	user "goZeroApi/internal/handler/user"
 	"goZeroApi/internal/svc"
 
@@ -17,6 +18,7 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 	server.AddRoutes(
 		[]rest.Route{
 			{
+				// 获取文章详情
 				Method:  http.MethodGet,
 				Path:    "/article/:id",
 				Handler: article.ArticleDetailHandler(serverCtx),
@@ -32,11 +34,31 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 	server.AddRoutes(
 		[]rest.Route{
 			{
+				// 获取图形验证码
+				Method:  http.MethodGet,
+				Path:    "/generate",
+				Handler: tools.GenerateCaptchaHandler(serverCtx),
+			},
+			{
+				// 校验图形验证码
+				Method:  http.MethodPost,
+				Path:    "/verify",
+				Handler: tools.VerifyCaptchaHandler(serverCtx),
+			},
+		},
+		rest.WithPrefix("/api/captcha"),
+	)
+
+	server.AddRoutes(
+		[]rest.Route{
+			{
+				// 用户登录
 				Method:  http.MethodPost,
 				Path:    "/login",
 				Handler: user.LoginHandler(serverCtx),
 			},
 			{
+				// 用户注册
 				Method:  http.MethodPost,
 				Path:    "/register",
 				Handler: user.RegisterHandler(serverCtx),
@@ -48,6 +70,7 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 	server.AddRoutes(
 		[]rest.Route{
 			{
+				// 获取个人信息
 				Method:  http.MethodPost,
 				Path:    "/my/detail",
 				Handler: user.GetMyDetailHandler(serverCtx),

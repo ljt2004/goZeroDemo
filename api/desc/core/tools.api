@@ -1,0 +1,53 @@
+syntax = "v1"
+
+
+
+info(
+	title: "用户文档"
+	desc:  "用户接口"
+	author: ""
+	email: ""
+	version: "1.0"
+	schemes: "http"
+)
+
+
+
+// ====================== 请求/响应结构体 ======================
+type GenerateCaptchaReq {
+}
+
+type GenerateCaptchaResp {
+	id    string `json:"id"`    // 验证码ID
+	image string `json:"image"` // base64图片
+}
+
+type VerifyCaptchaReq {
+	id   string `json:"id"`
+	code string `json:"code"`
+}
+
+// ====================== 工具类服务 ======================
+@server (
+	prefix: /api/captcha  // 统一前缀
+	group:  tools        // 生成到 tools 目录
+	tags:   "公共工具"   // swagger 分组
+)
+service goZeroApi {
+	// 1. 获取图形验证码
+	@doc(
+		summary: "获取图形验证码"
+	)
+	@handler GenerateCaptcha
+	get /generate (GenerateCaptchaReq) returns (GenerateCaptchaResp)
+
+	// 2. 校验图形验证码
+	@doc(
+		summary: "校验图形验证码"
+	)
+	@handler VerifyCaptcha
+	post /verify (VerifyCaptchaReq) returns (BaseResponse)
+}
+
+
+
