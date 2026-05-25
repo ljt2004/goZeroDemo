@@ -34,3 +34,4 @@
 Thumbs.db
 
 default.etcd/
+.trae/rules/git-commit-message.md
