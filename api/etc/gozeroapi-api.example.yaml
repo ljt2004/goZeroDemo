@@ -43,7 +43,7 @@ Email:
   addr: smtp.qq.com:25
   auth: smtp.PlainAuth       
   identity:
-  username: 2184138989@qq.com
-  password: 
+  username: xxxxx@qq.com
+  password: qxxxxxxxxx
   host: smtp.qq.com
 

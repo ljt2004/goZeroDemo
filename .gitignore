@@ -1,3 +1,14 @@
+
+
+
+
+# 1. 先忽略所有 yaml
+*.yaml
+*.yml
+
+# 2. 再把 example 例外（不忽略）
+!*.example.yaml
+!*.example.yml
 # Go 编译输出
 /bin/
 /dist/
