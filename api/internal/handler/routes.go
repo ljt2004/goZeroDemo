@@ -52,6 +52,17 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 	server.AddRoutes(
 		[]rest.Route{
 			{
+				Method:  http.MethodPost,
+				Path:    "/sendEmail",
+				Handler: tools.SendEmailCodeHandler(serverCtx),
+			},
+		},
+		rest.WithPrefix("/api"),
+	)
+
+	server.AddRoutes(
+		[]rest.Route{
+			{
 				// 用户登录
 				Method:  http.MethodPost,
 				Path:    "/login",

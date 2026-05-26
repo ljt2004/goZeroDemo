@@ -27,6 +27,11 @@ type VerifyCaptchaReq {
 	code string `json:"code"`
 }
 
+type SendEmailCodeReq{
+	email string `json:"email"`	
+}
+
+
 // ====================== 工具类服务 ======================
 @server (
 	prefix: /api/captcha  // 统一前缀
@@ -47,6 +52,20 @@ service goZeroApi {
 	)
 	@handler VerifyCaptcha
 	post /verify (VerifyCaptchaReq) returns (BaseResponse)
+
+	
+}
+
+@server (
+	prefix: /api // 统一前缀
+	group:  tools        // 生成到 tools 目录
+	tags:   "公共工具"   // swagger 分组
+)
+
+service goZeroApi {
+
+@handler SendEmailCode 
+	post /sendEmail (SendEmailCodeReq) returns (BaseResponse)
 }
 
 

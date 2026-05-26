@@ -36,14 +36,20 @@ type GetMyDetailReq struct {
 }
 
 type LoginReq struct {
-	Phone    string `json:"phone"`
-	Password string `json:"password"`
+	Phone     string `json:"phone"`
+	Password  string `json:"password"`
+	Email     string `json:"email"`
+	EmailCode string `json:"emailcode"`
 }
 
 type RegisterReq struct {
 	Username string `json:"username"`
 	Password string `json:"password"`
 	Phone    string `json:"phone"`
+}
+
+type SendEmailCodeReq struct {
+	Email string `json:"email"`
 }
 
 type VerifyCaptchaReq struct {

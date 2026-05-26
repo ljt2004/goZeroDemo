@@ -26,5 +26,12 @@ type Config struct {
 		MaxSkew float64 // 最大倾斜角度
 	}
 
+	Email struct {
+		Host     string
+		Port     int
+		Username string
+		Password string
+	}
+
 	Redis redis.RedisConf
 }

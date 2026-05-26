@@ -16,10 +16,13 @@ type (
 		Username string `json:"username"`
 		Password string `json:"password"`
 		Phone    string `json:"phone"`
+		
 	}
 	LoginReq {
 		Phone    string `json:"phone"`
 		Password string `json:"password"`
+		Email    string `json:"email"`
+		EmailCode string  `json:"emailcode"`
 	}
 	GetMyDetailReq  {}
 )
